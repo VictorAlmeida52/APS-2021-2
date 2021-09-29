@@ -1,0 +1,88 @@
+<div class="container" *ngIf="data">
+    <div id="datetime" class="datetimeContainer">
+        <div class="leftAlign">
+            <div class="header" [ngStyle]="{'margin-top': (time.length<1) ? '1vh' : '0', 'margin-bottom': (time.length<1) ? '1.5vh' : '0'}">
+                <p-skeleton *ngIf="time.length<1" height="5rem" width="30vw"></p-skeleton>
+                {{ time }}
+            </div>
+    
+            <div class="subheader">
+                <p-skeleton *ngIf="time.length<1" height="2rem" width="50vw"></p-skeleton>
+                {{ date }}
+            </div>
+    
+            <div class="weatherBox">
+                <div class="weatherBoxItem">
+                    <div class="weatherBoxItemLabel">Umidade</div>
+                    <div class="weatherBoxItemLabel">{{ data.current.humidity }}%</div>
+                </div>
+                <div class="weatherBoxItem">
+                    <div class="weatherBoxItemLabel">Pressão</div>
+                    <div class="weatherBoxItemLabel">{{ data.current.pressure_mb }}hPa</div>
+                </div>
+                <div class="weatherBoxItem">
+                    <div class="weatherBoxItemLabel">Nascer do Sol</div>
+                    <div class="weatherBoxItemLabel">{{ timeFormatter(data.forecast.forecastday[0].astro.sunrise) }}</div>
+                </div>
+                <div class="weatherBoxItem">
+                    <div class="weatherBoxItemLabel">Pôr do Sol</div>
+                    <div class="weatherBoxItemLabel">{{ timeFormatter(data.forecast.forecastday[0].astro.sunset) }}</div>
+                </div>
+                <br />
+                <p-accordion>
+                    <p-accordionTab id="teste" header="Qualidade do ar">
+                        <div class="weatherBoxItem">
+                            <div class="weatherBoxItemLabel">CO</div>
+                            <div class="weatherBoxItemLabel">{{ data.current.air_quality.co }}μg/m3</div>
+                        </div>
+                        <div class="weatherBoxItem">
+                            <div class="weatherBoxItemLabel">NO2</div>
+                            <div class="weatherBoxItemLabel">{{ data.current.air_quality.no2 }}μg/m3</div>
+                        </div>
+                        <div class="weatherBoxItem">
+                            <div class="weatherBoxItemLabel">O3</div>
+                            <div class="weatherBoxItemLabel">{{ data.current.air_quality.o3 }}μg/m3</div>
+                        </div>
+                        <div class="weatherBoxItem">
+                            <div class="weatherBoxItemLabel">SO2</div>
+                            <div class="weatherBoxItemLabel">{{ data.current.air_quality.so2 }}μg/m3</div>
+                        </div>
+                        <div class="weatherBoxItem">
+                            <div class="weatherBoxItemLabel">PM2_5</div>
+                            <div class="weatherBoxItemLabel">{{ data.current.air_quality.pm2_5 }}μg/m3</div>
+                        </div>
+                        <div class="weatherBoxItem">
+                            <div class="weatherBoxItemLabel">PM10</div>
+                            <div class="weatherBoxItemLabel">{{ data.current.air_quality.pm10 }}μg/m3</div>
+                        </div>
+                        <div class="weatherBoxItem">
+                            <div class="weatherBoxItemLabel">PM10</div>
+                            <div class="weatherBoxItemLabel">{{ data.current.air_quality.pm10 }}μg/m3</div>
+                        </div>
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+    
+        </div>
+    
+        <div class="rightAlign">
+            <p class="timezone" >{{data.location.region}}</p>
+            <p class="coordinates">Teste</p>
+        </div>
+    </div>
+
+    <div id="weatherscroll" >
+        <div class="scrollContainer" *ngIf="data.forecast.forecastday && data.forecast.forecastday.length > 0">
+            <div class="forecastContainer" *ngFor="let forecast of data.forecast.forecastday" >
+                <div class="imageContainer">
+                    <img src={{parseImgUrl(forecast.day.condition.icon)}} alt="" class="img" />
+                </div>
+                <div class="infoContainer">
+                    <span class="infoHeader">{{ parseInfoHeader(forecast.date_epoch) }}</span>
+                    <span class="info">Mínima - {{ roundValue(forecast.day.mintemp_c) }}&#8451;</span>
+                    <span class="info">Máxima - {{ roundValue(forecast.day.maxtemp_c) }}&#8451; </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+.scrollContainer {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background-color: #18181bcc;
+    height: 35vh;
+}
+
+.forecastContainer {
+    position: relative;
+    display: inline-block;
+    background-color: #00000033;
+    border-radius: 10px;
+    border-color: white;
+    border-width: 1px;
+    justify-content: center;
+    height: 30vh;
+    margin: 2.5vh 5vw 2.5vh 5vw;
+    width: 90vw;
+}
+
+.img {
+    position: absolute;
+    left: 5vw;
+    width: 15vh;
+    height: 15vh;
+}
+
+
+.imageContainer {
+    position: absolute;
+    top: 0;
+    left: 5vw;
+    height: 30vh;
+}
+
+.infoContainer {
+    position: absolute;
+    top: 0;
+    right: 5vw;
+    height: 30vh;
+}
+
+.infoContainer, .imageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoHeader, .info {
+    display: block;
+}
+
+.infoHeader {
+    font-size: 5vw;
+    color: white;
+    background-color: #3c3c44;
+    padding: 10px;
+    text-align: center;
+    border-radius: 50px;
+    font-weight: 200;
+    margin: 10px;
+    text-transform: capitalize;
+}
+
+.info {
+    font-size: 4vw;
+    color: white;
+    font-weight: 100;
+    text-align: center;
+}
+
+.info:last-child{
+    margin-bottom: 0;
+}

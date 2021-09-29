@@ -1,0 +1,81 @@
+::ng-deep :root{
+    --weatherbox-font-size: 2.3vh;
+    --weatherbox-bg-color: #18181b;
+    --header-font-size: 8vh;
+    --subheader-font-size: 3.5vh;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.datetimeContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 65vh;
+    background-color: #99999999;
+}
+
+.leftAlign {
+    flex-grow: 2;
+    margin-top: 1vh;
+}
+
+.rightAlign {
+    visibility: visible;
+    flex-grow: 1;
+    text-align: right;
+    margin-top: 5em;
+}
+
+.timezone {
+    font-size: 20;
+    color: white;
+}
+
+.coordinates {
+    font-size: 16;
+    color: white;
+    font-weight: 700;
+}
+
+.header {
+    font-size: var(--header-font-size);
+    color: white;
+    font-weight: 100;
+}
+
+.subheader {
+    font-size: var(--subheader-font-size);
+    color: white;
+    font-weight: 300;
+}
+
+.weatherBox {
+    position: relative;
+    background-color: var(--weatherbox-bg-color);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.weatherBoxItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.weatherBoxItemLabel {
+    color: white;
+    font-size: var(--weatherbox-font-size);
+    font-weight: 100;
+}
+
+.weatherBoxItemValue {
+    color: white;
+    font-size: var(--weatherbox-font-size);
+    font-weight: 100;
+    margin-left: 50;
+}

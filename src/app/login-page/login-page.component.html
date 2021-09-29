@@ -1,0 +1,9 @@
+<form onsubmit="return false">
+    <label for="user">Usuário</label>
+    <input type="text" name="user" id="user" [(value)]="props.username"/>
+    <br />
+    <label for="password">Senha</label>
+    <input type="text" name="password" id="password" [(value)]="props.password"/>
+    <br />
+    <button (click)="auth()">Entrar</button>
+</form>
