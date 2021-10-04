@@ -16,6 +16,7 @@ import {GMapModule} from 'primeng/gmap';
 import {DialogModule} from 'primeng/dialog';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {DropdownModule} from 'primeng/dropdown';
+import {CheckboxModule} from 'primeng/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,6 +51,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     DividerModule,
     PasswordModule,
     TableModule,
+    CheckboxModule,
     GMapModule
   ],
   providers: [
