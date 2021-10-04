@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'about', component: SideMenuComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'queimadas', component: QueimadasPageComponent },
-  { path: '', component: LoginPageComponent }
+  { path: '', redirectTo: 'login' }
 ];
 
 @NgModule({
