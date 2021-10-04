@@ -1,36 +1,31 @@
-
-<div class="flex align-items-center justify-content-center">
+<div class="container flex align-items-center justify-content-center">
     <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
         <div class="text-center mb-5">
-            <img src="assets/images/blocks/logos/hyper.svg" alt="Image" height="50" class="mb-3">
-            <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
-            <span class="text-600 font-medium line-height-3">Don't have an account?</span>
-            <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a>
+            <img src="assets/logo.png" alt="Image" height="50" class="mb-3">
+            <div class="text-900 text-3xl font-medium mb-3">APS 2021-2 - DSD</div>
+            <span class="text-600 font-medium line-height-3">Não tem uma conta?</span>
+            <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Cadastre-se!</a>
         </div>
 
         <div>
-            <label for="username" class="block text-900 font-medium mb-2" [(ngModel)]="authProps.username">Usuário</label>
-            <input id="username" type="text" pInputText class="w-full mb-3">
+            <form>
+                <label for="username" class="block text-900 font-medium mb-2">Usuário</label>
+                <input id="username" type="text" pInputText class="w-full mb-3" [(ngModel)]="authProps.username" name="username" minlength="5">
 
-            <label for="password" class="block text-900 font-medium mb-2" [(ngModel)]="authProps.password">Senha</label>
-            <input id="password" type="password" pInputText class="w-full mb-3">
+                <label for="password" class="block text-900 font-medium mb-2">Senha</label>
+                <input id="password" type="password" pInputText class="w-full mb-3" [(ngModel)]="authProps.password" name="password">
 
-            <div class="flex align-items-center justify-content-between mb-6">
-                <div class="flex align-items-center">
-                    <p-checkbox id="rememberme" [binary]="true" styleClass="mr-2"></p-checkbox>
-                    <label for="rememberme">Remember me</label>
+                <div class="flex align-items-center justify-content-between mb-3">
+                    <div class="flex align-items-center">
+                        <p-checkbox id="rememberme" label="Manter conectado" [binary]="true" styleClass="mr-2"></p-checkbox>
+                    </div>
+                    <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Esqueceu sua senha?</a>
                 </div>
-                <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Esqueceu sua senha?</a>
-            </div>
 
-            <button pButton pRipple label="Sign In" icon="pi pi-user" class="w-full"></button>
+                <button pButton pRipple label="Entrar" icon="pi pi-user" class="w-full" (click)="login()"></button>
+            </form>
         </div>
     </div>
 </div>
 
-<br><br><br><br><br>
-
-<button (click)="login()">LOGAR</button>
-<button (click)="refresh()">REFRESH</button>
-<button (click)="validate()">VALIDAR</button>
-<button (click)="log()">LOG</button>
+<p-toast></p-toast>

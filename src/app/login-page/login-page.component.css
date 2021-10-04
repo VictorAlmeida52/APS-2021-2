@@ -1,0 +1,14 @@
+:host ::ng-deep .p-toast-message {
+    position: fixed;
+    right: 5vw;
+    width: min(500px, 90vw);
+}
+
+.container {
+    height: 100vh;
+    width: 90vw;
+    margin-inline: 5vw;
+}
+
+.surface-card {
+}

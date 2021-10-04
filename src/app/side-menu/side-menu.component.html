@@ -1,4 +1,4 @@
-<p-button type="text" (click)="showSidebar = true" icon="pi pi-angle-double-left" class="burger"></p-button>
+<!-- <p-button type="text" (click)="showSidebar = true" icon="pi pi-angle-double-left" class="burger"></p-button>
 <p-sidebar [(visible)]="showSidebar" position="right" >
     <nav>
         <div>
@@ -17,4 +17,18 @@
             <a routerLink="/login">Login</a>
         </div>
     </nav>
-</p-sidebar>
+</p-sidebar> -->
+<div style="display: flex; justify-content: space-between">
+    
+</div>
+<p-menubar [model]="items" [style]="{'height': '10vh'}">
+    <ng-template pTemplate="start">
+        <img src="assets/logo.png" alt="logo" class="logo">
+    </ng-template>
+
+    <!-- <ng-template pTemplate="end">
+        <button *ngIf="!authenticated" pButton pRipple label="Entrar" icon="pi pi-user" class="w-full" (click)="login()"></button>
+        <button *ngIf="authenticated" pButton pRipple label="Perfil" icon="pi pi-user" class="w-full" (click)="profile()"></button>
+    </ng-template> -->
+</p-menubar>
+

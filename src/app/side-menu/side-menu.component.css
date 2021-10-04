@@ -1,5 +1,6 @@
-.burger {
-    position: fixed;
-    top: 15px;
-    right: 20px;
+.logo {
+    height: 7vh;
+    width: auto;
+    margin-left: 5vw;
+    margin-right: 1vw;
 }

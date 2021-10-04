@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent {
 
   public showSideMenu: boolean = false
 
-  constructor(private _router: Router){
+  constructor(private _router: Router, private primengConfig: PrimeNGConfig){
     this.router = _router.url
     _router.events.subscribe((val) => {
       if(val instanceof NavigationEnd){
@@ -24,5 +25,11 @@ export class AppComponent {
       }
     })
   }
+
+  ngOnInit() {
+    this.primengConfig.ripple = true;
+  }
+
+
   title = 'aps-frontend';
 }

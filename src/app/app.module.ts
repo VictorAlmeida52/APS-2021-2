@@ -17,6 +17,12 @@ import {DialogModule} from 'primeng/dialog';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {DropdownModule} from 'primeng/dropdown';
 import {CheckboxModule} from 'primeng/checkbox';
+import {RippleModule} from 'primeng/ripple';
+import {MenubarModule} from 'primeng/menubar';
+import {ToastModule} from 'primeng/toast';
+
+
+import { MessageService } from 'primeng/api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +42,8 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
   ],
   imports: [
     BrowserModule,
+    MenubarModule,
+    ToastModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -52,11 +60,14 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     PasswordModule,
     TableModule,
     CheckboxModule,
+    RippleModule,
     GMapModule
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService],
+    JwtHelperService,
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

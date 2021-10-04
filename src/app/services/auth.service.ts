@@ -12,8 +12,8 @@ export class AuthService {
 
   constructor(public jwtHelper: JwtHelperService, private http: HttpClient) { }
 
-  public async authenticate(): Promise<any> {
-    return await (this.http.post('http://localhost:8000/login', { username: 'Victor' })).toPromise()
+  public async authenticate(username: string, password: string): Promise<any> {
+    return await (this.http.post('http://localhost:8000/login', { username, password })).toPromise()
   }
 
   public async refreshToken(refreshToken: string): Promise<any> {

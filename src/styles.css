@@ -1,4 +1,11 @@
+@import "primeflex/primeflex.css";
+
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    padding: 0;
+}
+
 app-root{
     position: absolute;
     top: 0;
@@ -7,7 +14,26 @@ app-root{
     height: 100vh;
 }
 
+.ui.toast {
+    width: 10px !important;
+}
+
 .p-accordion-content {
     background-color: transparent !important;
     border: none !important;
+}
+
+@media only screen and (max-width: 960px) {
+    a.p-menubar-button > i {
+        font-size: 2rem;
+    }
+
+    .p-menubar {
+        position: relative;
+    }
+
+    .p-menubar-button {
+        position: absolute;
+        right: 2vw;
+    }
 }
