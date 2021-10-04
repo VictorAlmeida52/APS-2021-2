@@ -1,9 +1,17 @@
-<form onsubmit="return false">
-    <label for="user">Usuário</label>
-    <input type="text" name="user" id="user" [(value)]="props.username"/>
-    <br />
-    <label for="password">Senha</label>
-    <input type="text" name="password" id="password" [(value)]="props.password"/>
-    <br />
-    <button (click)="auth()">Entrar</button>
-</form>
+<br><br><br><br><br>
+<span class="p-float-label">
+    <input type="text" pInputText [(ngModel)]="authProps.username" />
+    <label for="float-input">Username</label>
+</span>
+<br><br><br><br><br>
+<span class="p-float-label">
+    <p-password [(ngModel)]="authProps.password" [toggleMask]="true"></p-password>
+    <label for="float-input">Password</label>
+</span>
+
+<br><br><br><br><br>
+
+<button (click)="login()">LOGAR</button>
+<button (click)="refresh()">REFRESH</button>
+<button (click)="validate()">VALIDAR</button>
+<button (click)="log()">LOG</button>

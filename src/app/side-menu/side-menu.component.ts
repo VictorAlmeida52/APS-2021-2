@@ -9,6 +9,11 @@ export class SideMenuComponent implements OnInit {
   
   public showSidebar: boolean = false
 
+  log(): void {
+    console.log(this.showSidebar);
+    
+  }
+
   constructor() { }
 
   ngOnInit(): void {

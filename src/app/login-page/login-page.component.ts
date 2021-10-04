@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../services/login.service';
-import { Login } from '../models/login';
-
-
+import { AuthProps } from '../models/auth-props';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -11,90 +9,35 @@ import { Login } from '../models/login';
 })
 export class LoginPageComponent implements OnInit {
 
-  private refreshUrl: string = 'http://localhost:8080/auth/realms/APS/protocol/openid-connect/token'
-  public props: any = {
-    client_id: 'aps-auth',
-    client_secret: '10b7ea08-4528-4312-865d-9e5757ef68e6',
+  public authProps = {
     username: '',
     password: ''
   }
 
-  refreshToken(): void {
-    const data = `client_id=${this.props.client_id}&grant_type=refresh_token&refresh_token=${sessionStorage.getItem('keycloak-refresh-token') || this.props.refresh_token}&client_secret=${this.props.client_secret}`;
-
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
-
-
-    xhr.addEventListener("readystatechange", function () {
-      if (this.readyState === this.DONE) {
-        const response = JSON.parse(this.responseText)
-        sessionStorage.setItem('keycloak-refresh-token', response.refresh_token)
-        sessionStorage.setItem('keycloak-access-token', response.access_token)
-        console.log(response.refresh_token + ' - ' + this.status);
-        if(this.status != 200){
-          console.log(response);
-          console.log("Não foi possível atualizar o token");
-        }
-      }
-    });
-
-    xhr.open("POST", this.refreshUrl);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    try {
-      xhr.send(data);
-    } catch (error) {
-      console.log('Erroooooo');
-      console.log(error);
-    }
+  async log() {
+    console.log(`Access token: ${localStorage.getItem('accessToken')}\nRefresh token: ${localStorage.getItem('refreshToken')}`);
   }
 
-  login(): void {
-    const data = `client_id=${this.props.client_id}&grant_type=password&client_secret=${this.props.client_secret}&scope=openid&username=${this.props.username}&password=${this.props.password}`;
-
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
-
-    xhr.addEventListener("readystatechange", function () {
-      if (this.readyState === this.DONE) {
-        const response = JSON.parse(this.responseText)
-        sessionStorage.setItem('keycloak-refresh-token', response.refresh_token)
-        sessionStorage.setItem('keycloak-access-token', response.access_token)
-        console.log(response.refresh_token + ' - ' + this.status);
-        if(this.status != 200){
-          console.log(response);
-          throw new Error("Não foi possível fazer o login");
-        }
-      }
-    });
-
-    xhr.open("POST", "http://localhost:8080/auth/realms/APS/protocol/openid-connect/token");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    try {
-      xhr.send(data);
-    } catch (error) {
-      console.log('Erroooooo');
-      console.log(error);
-    }
+  validate(): void {
+    console.log(this.authService.isAuthenticated())
   }
 
-  auth(): void {
-    const params: Login = {
-      client_id: 'aps-auth',
-      grant_type: 'password',
-      client_secret: '58dae9fe-f3cb-4bce-8973-a630dc73903b',
-      scope: 'openid',
-      username: 'aps-user',
-      password: 'Unip@2021'
-    }
-    this.loginService.auth(params).subscribe(() => {
-      console.log('opa');
-    })
+  async refresh() {
+    const refreshToken = localStorage.getItem('refreshToken')
+    const oldAccessToken = localStorage.getItem('accessToken')
+    const token = refreshToken !== null && await this.authService.refreshToken(refreshToken)
+    localStorage.setItem('accessToken', token.accessToken)
+    console.log(`Old access token: ${oldAccessToken}\nNew access token: ${localStorage.getItem('accessToken')}`);
+    
   }
-  
-  constructor(private loginService: LoginService) { }
+
+  async login() {
+    const tokens = await this.authService.authenticate()
+    localStorage.setItem('accessToken', tokens.accessToken)
+    localStorage.setItem('refreshToken', tokens.refreshToken)
+  }
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
