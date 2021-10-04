@@ -31,6 +31,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { QueimadasPageComponent } from './queimadas-page/queimadas-page.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     WeatherPageComponent,
     SideMenuComponent,
     LoginPageComponent,
-    QueimadasPageComponent
+    QueimadasPageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
