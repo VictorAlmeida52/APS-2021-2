@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'queimadas', component: QueimadasPageComponent },
   { path: 'about', component: SideMenuComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'queimadas', component: QueimadasPageComponent }
+  { path: 'queimadas', component: QueimadasPageComponent },
+  { path: '', component: LoginPageComponent }
 ];
 
 @NgModule({
