@@ -17,7 +17,7 @@ export class HomePageComponent implements OnInit {
         this.router.navigate([''])
       } else {
         this.authService.confirmEmail(token)
-        this.router.navigate(['login'])
+        this.router.navigate(["questions/1"], {replaceUrl:true});
       }
     })
   }
