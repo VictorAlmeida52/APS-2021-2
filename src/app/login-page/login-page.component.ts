@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { AuthProps } from '../models/auth-props';
 import { AuthService } from '../services/auth.service';
-import GoTrue from 'gotrue-js';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -13,11 +11,6 @@ import { ActivatedRoute } from '@angular/router';
 export class LoginPageComponent implements OnInit {
 
   public confirmation_token = ''
-  private auth = new GoTrue({
-    APIUrl: 'https://aps20212.netlify.app/.netlify/identity',
-    audience: '',
-    setCookie: false,
-  });
 
   public authProps = {
     username: '',
@@ -41,10 +34,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   signup() {
-    this.auth
-    .signup('victor.almeida2410@gmail.com', 'Selens@01')
-    .then((response) => console.log('Confirmation email sent', response))
-    .catch((error) => console.log("It's an error", error));
+    this.authService.signup(this.authProps.username, this.authProps.password)
   }
 
   async login2() {
@@ -59,18 +49,10 @@ export class LoginPageComponent implements OnInit {
   }
 
   login() {
-    this.auth
-    .login(this.authProps.username, this.authProps.password, true)
-    .then((response) => {
-      console.log(`Success! Response: ${JSON.stringify({ response })}`);
-    })
-    .catch((error) => console.log(`Failed :( ${JSON.stringify(error)}`));
+    this.authService.login(this.authProps.username, this.authProps.password)
   }
 
-  constructor(private authService: AuthService, private messageService: MessageService, private route: ActivatedRoute) {
-    this.route.fragment.subscribe(fragment => {
-      console.log(fragment)
-    })
+  constructor(private authService: AuthService, private messageService: MessageService) {
   }
 
   ngOnInit(): void {

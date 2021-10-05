@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'queimadas', component: QueimadasPageComponent, canActivate: [AuthGuardService] },
   { path: 'about', component: SideMenuComponent, canActivate: [AuthGuardService] },
   { path: 'login', component: LoginPageComponent,},
-  { path: '', component: HomePageComponent, canActivate: [AuthGuardService] }
+  { path: '', component: HomePageComponent }
 ];
 
 @NgModule({
