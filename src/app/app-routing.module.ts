@@ -14,11 +14,11 @@ const routes: Routes = [
   { path: 'queimadas', component: QueimadasPageComponent, canActivate: [AuthGuardService] },
   { path: 'about', component: SideMenuComponent, canActivate: [AuthGuardService] },
   { path: 'login', component: LoginPageComponent,},
-  { path: '', component: HomePageComponent }
+  { path: '', component: HomePageComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
