@@ -20,7 +20,6 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "@auth0/angular-jwt": "^5.0.2",
-    "@netlify/plugin-angular-universal": "^1.0.1",
     "@types/googlemaps": "^3.43.3",
     "gotrue-js": "^0.9.29",
     "moment-timezone": "^0.5.33",
