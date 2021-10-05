@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { AuthProps } from '../models/auth-props';
 import { AuthService } from '../services/auth.service';
+import GoTrue from 'gotrue-js';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -9,6 +11,13 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+
+  public confirmation_token = ''
+  private auth = new GoTrue({
+    APIUrl: 'https://aps20212.netlify.app/.netlify/identity',
+    audience: '',
+    setCookie: false,
+  });
 
   public authProps = {
     username: '',
@@ -31,7 +40,14 @@ export class LoginPageComponent implements OnInit {
     console.log(`Old access token: ${oldAccessToken}\nNew access token: ${localStorage.getItem('accessToken')}`);
   }
 
-  async login() {
+  signup() {
+    this.auth
+    .signup('victor.almeida2410@gmail.com', 'Selens@01')
+    .then((response) => console.log('Confirmation email sent', response))
+    .catch((error) => console.log("It's an error", error));
+  }
+
+  async login2() {
     try {
       const tokens = await this.authService.authenticate(this.authProps.username, this.authProps.password)
       localStorage.setItem('accessToken', tokens.accessToken)
@@ -42,7 +58,20 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  constructor(private authService: AuthService, private messageService: MessageService) { }
+  login() {
+    this.auth
+    .login(this.authProps.username, this.authProps.password, true)
+    .then((response) => {
+      console.log(`Success! Response: ${JSON.stringify({ response })}`);
+    })
+    .catch((error) => console.log(`Failed :( ${JSON.stringify(error)}`));
+  }
+
+  constructor(private authService: AuthService, private messageService: MessageService, private route: ActivatedRoute) {
+    this.route.fragment.subscribe(fragment => {
+      console.log(fragment)
+    })
+  }
 
   ngOnInit(): void {
   }

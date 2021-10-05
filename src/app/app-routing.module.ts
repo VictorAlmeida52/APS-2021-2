@@ -13,12 +13,12 @@ const routes: Routes = [
   { path: 'traffic', component: SideMenuComponent, canActivate: [AuthGuardService] },
   { path: 'queimadas', component: QueimadasPageComponent, canActivate: [AuthGuardService] },
   { path: 'about', component: SideMenuComponent, canActivate: [AuthGuardService] },
-  { path: 'login', component: LoginPageComponent },
-  { path: '', component: HomePageComponent, canActivate: [AuthGuardService] }
+  { path: 'login', component: LoginPageComponent,},
+  { path: '', component: HomePageComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

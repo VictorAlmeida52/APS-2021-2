@@ -23,9 +23,12 @@
                 </div>
 
                 <button pButton pRipple label="Entrar" icon="pi pi-user" class="w-full" (click)="login()"></button>
+                <button pButton pRipple label="Cadastrar" icon="pi pi-user" class="w-full" (click)="signup()"></button>
             </form>
         </div>
     </div>
 </div>
+
+<input type="text" [(ngModel)]="confirmation_token" id="confirmation_token" />
 
 <p-toast></p-toast>
