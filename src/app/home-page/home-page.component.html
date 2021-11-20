@@ -1,2 +1,37 @@
-<p>home-page works!</p>
-<input type="text" [(ngModel)]="confirmation_token" id="confirmation_token" />
+<div>
+  <p-card header="Previsão do Tempo" subheader="" [style]="{width: '360px'}" styleClass="p-card-shadow">
+    <ng-template pTemplate="header">
+        <img alt="Card" src="https://cdn-icons-png.flaticon.com/512/237/237867.png">
+    </ng-template>
+    <p>
+      Acesse a página de previsão do tempo e qualidade do ar.
+    </p>
+    <ng-template pTemplate="footer">
+        <p-button [routerLink]="['/weather']" label="Acessar" icon="pi pi-check" [style]="{'margin-left': '30%'}"></p-button>
+    </ng-template>
+  </p-card>
+
+  <p-card header="Queimadas" subheader="" [style]="{width: '360px'}" styleClass="p-card-shadow">
+    <ng-template pTemplate="header">
+        <img alt="Card" src="https://cdn-icons-png.flaticon.com/512/2640/2640381.png">
+    </ng-template>
+    <p>
+      Acesse a página de queimadas.
+    </p>
+    <ng-template pTemplate="footer">
+        <p-button [routerLink]="['/queimadas']" label="Acessar" icon="pi pi-check" [style]="{'margin-left': '30%'}"></p-button>
+    </ng-template>
+  </p-card>
+
+  <p-card header="Acidentes ambientais" subheader="" [style]="{width: '360px'}" styleClass="p-card-shadow">
+    <ng-template pTemplate="header">
+        <img alt="Card" src="https://pic.onlinewebfonts.com/svg/img_178077.png">
+    </ng-template>
+    <p>
+      Acesse a página de acidentes ambientais.
+    </p>
+    <ng-template pTemplate="footer">
+        <p-button [routerLink]="['/acidentes']" label="Acessar" icon="pi pi-check" [style]="{'margin-left': '30%'}"></p-button>
+    </ng-template>
+  </p-card>
+</div>

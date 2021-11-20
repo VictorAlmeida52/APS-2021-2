@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./side-menu.component.css']
 })
 export class SideMenuComponent implements OnInit {
-  
+
   public showSidebar: boolean = false
   public items: MenuItem[] = new Array<MenuItem>();
   public authenticated: boolean
@@ -22,8 +22,9 @@ export class SideMenuComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  profile() {
-    console.log('Redirected to profile')
+  logout() {
+    this.authservice.signout();
+    this.router.navigate(['login']);
   }
 
   constructor(public router: Router, private authservice: AuthService) {
@@ -37,16 +38,12 @@ export class SideMenuComponent implements OnInit {
         routerLink: 'weather'
       },
       {
-        label: 'Trânsito',
-        routerLink: 'traffic'
+        label: 'Acidentes Ambientais',
+        routerLink: 'acidentes'
       },
       {
         label: 'Queimadas',
         routerLink: 'queimadas'
-      },
-      {
-        label: 'Sobre',
-        routerLink: 'about'
       },
     ];
   }

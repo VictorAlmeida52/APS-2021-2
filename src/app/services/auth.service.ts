@@ -2,52 +2,60 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-import GoTrue from 'gotrue-js';
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private auth = new GoTrue({
-    APIUrl: 'https://aps20212.netlify.app/.netlify/identity',
-    audience: '',
-    setCookie: true,
-  });
-
   constructor(public jwtHelper: JwtHelperService, private http: HttpClient) { }
 
-  public async authenticate(username: string, password: string): Promise<any> {
-    return await (this.http.post('http://localhost:8000/login', { username, password })).toPromise()
+  public async login(username: string, password: string) {
+    const promise = (this.http.post('http://localhost:8000/login', { username, password })).toPromise()
+    let result = await Promise.resolve(promise).catch((err: any) => err)
+    localStorage.setItem('accessToken', result.accessToken)
+    localStorage.setItem('refreshToken', result.refreshToken)
+    return result
   }
 
-  public async refreshToken(refreshToken: string): Promise<any> {
-    return await (this.http.post('http://localhost:8000/token', { token: refreshToken })).toPromise()
+
+  public async refreshToken() {
+    const refreshToken = localStorage.getItem('refreshToken')
+    if (refreshToken !== null){
+      const promise = (this.http.post('http://localhost:8000/token', { token: refreshToken })).toPromise()
+      let result = await Promise.resolve(promise).catch((err: any) => err)
+      localStorage.setItem('accessToken', result.accessToken)
+    }
   }
 
-  public signup(username: string, password: string) {
-    this.auth
-    .signup(username, password)
-    .then((response) => console.log('Confirmation email sent', response))
-    .catch((error) => console.log("It's an error", error));
+  public async signup(username: string, password: string) {
+    const promise = (this.http.post('http://localhost:8000/users', { username, password })).toPromise()
+    let result = await Promise.resolve(promise).catch((err: any) => err)
+    console.log(result);
+    return result
   }
 
-  public login(username: string, password: string) {
-    this.auth
-    .login(username, password, true)
-    .then((response) => {
-      console.log(`Success! Response: ${JSON.stringify({ response })}`);
-    })
-    .catch((error) => console.log(`Failed :( ${JSON.stringify(error)}`));
-  }
-
-  public confirmEmail(token: string) {
-    this.auth.confirm(token, true).catch(err => console.log(err))
+  public signout() {
+    let token = localStorage.getItem('refreshToken')
+    token !== null && Promise.resolve((this.http.request('delete', 'http://localhost:8000/logout', { body: { token } })).toPromise())
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
   }
 
   public isAuthenticated(): boolean {
-    const token = localStorage.getItem('accessToken')
-    return token !== null && !this.jwtHelper.isTokenExpired(token)
+    try {
+      let token = localStorage.getItem('accessToken')
+      if(token !== null){
+        let expired = this.jwtHelper.isTokenExpired(token)
+        if (!expired) return true
+        console.log('Estava expirado')
+        this.refreshToken()
+        return true
+      } else {
+        return false
+      }
+    } catch {
+      return false
+    }
   }
 
 }

@@ -20,6 +20,7 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {RippleModule} from 'primeng/ripple';
 import {MenubarModule} from 'primeng/menubar';
 import {ToastModule} from 'primeng/toast';
+import {CardModule} from 'primeng/card';
 
 
 import { MessageService } from 'primeng/api';
@@ -32,6 +33,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { QueimadasPageComponent } from './queimadas-page/queimadas-page.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HomePageComponent } from './home-page/home-page.component';
+import { AcidentesPageComponent } from './acidentes-page/acidentes-page.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     SideMenuComponent,
     LoginPageComponent,
     QueimadasPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    AcidentesPageComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     TableModule,
     CheckboxModule,
     RippleModule,
-    GMapModule
+    GMapModule,
+    CardModule
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
